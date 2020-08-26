@@ -69,8 +69,15 @@ describe("The update item function", () => {
                 const updatedItems = updateQuality(items);
                 expect(updatedItems[0].quality).toBe(23);
             });
+            it("the quality does not go above 50", () => {
+                const items = [{ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 50}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(50);
+            });
         })
     })
+
+
 
 
 
