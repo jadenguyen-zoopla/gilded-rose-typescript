@@ -45,10 +45,14 @@ const getUpdatedBackstagePassQuality = (item: Item): number => {
 }
 
 const getUpdatedAgedBrieQuality = (item: Item): number => {
-    if (item.quality >= 50) {
-        return 50;
+    let newQuality = item.quality + 1;
+    if (item.sellIn <= 0) {
+        newQuality++;
     }
-    return item.quality + 1;
+    if (newQuality >= 50) {
+        newQuality = 50;
+    }
+    return newQuality;
 }
 
 // const getUpdatedBackstagePassQuality = (item: Item): number => {
@@ -96,11 +100,7 @@ export const updateQuality = (items: Item[]): Item[] => {
                 } else {
                     item.quality = item.quality - item.quality;
                 }
-            } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-            }
+            } 
         }
     });
 
