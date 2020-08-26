@@ -50,9 +50,6 @@ describe("The update item function", () => {
                 expect(updatedItems[0].quality).toBe(20);
             })
         })
-    })
-
-    describe("update the quality", () => {
         describe("of backstage passes", () => {
             it("by increasing it by 1 if more than 11 days before concert", () => {
                 const items = [{ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 20}];
@@ -75,7 +72,22 @@ describe("The update item function", () => {
                 expect(updatedItems[0].quality).toBe(50);
             });
         })
+        describe("of Aged Brie", () => {
+            it("by increasing the quality by 1 up to 50", () => {
+                const items = [{name: "Aged Brie", sellIn: 20, quality: 20}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(21);
+            })
+            it("quality does not go above 50", () => {
+                const items = [{name: "Aged Brie", sellIn: 20, quality: 50}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(50);
+            })
+
+        })
     })
+
+
 
 
 
