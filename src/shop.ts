@@ -16,15 +16,15 @@ const isBackstagePass = (item: Item): boolean => {
     return item.name === 'Backstage passes to a TAFKAL80ETC concert';
 }
 
+const isRegularItem = (item: Item): boolean => {
+    return !isLegendary(item) && !isAgedBrie(item) && !isBackstagePass(item)
+}
+
 const getUpdatedSellIn = (item: Item): number => {
     if (isLegendary(item)) {
         return item.sellIn;
     }
     return item.sellIn - 1;
-}
-
-const isRegularItem = (item: Item): boolean => {
-    return !isLegendary(item) && !isAgedBrie(item) && !isBackstagePass(item)
 }
 
 const getUpdatedRegularItemQuality = (item: Item): number => {
@@ -42,6 +42,18 @@ const getUpdatedQuality = (item: Item): number => {
     if (isLegendary(item)) {
         return item.quality;
     }
+
+
+    // if (isAgedBrie(item) || isBackstagePass) {
+    //     return item.quality + 1;
+    // }
+
+// const getUpdatedBackstagePassesQuality = (item: Item): number => {
+//     if (isBackstagePass(item)) {
+//         return item.quality + 1;
+//     }
+//     return item.quality;
+// }
     
     if (item.quality < 50) {
         item.quality = item.quality + 1;

@@ -51,4 +51,30 @@ describe("The update item function", () => {
             })
         })
     })
+
+    describe("update the quality", () => {
+        describe("of backstage passes", () => {
+            it("by increasing it by 1 if more than 11 days before concert", () => {
+                const items = [{ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 20}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(21);
+            });
+            it("by increasing it by 2 if 10 or less days before concert", () => {
+                const items = [{ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 10, quality: 20}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(22);
+            });
+            it("by increasing it by 3 if 5 or less days before concert", () => {
+                const items = [{ name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 5, quality: 20}];
+                const updatedItems = updateQuality(items);
+                expect(updatedItems[0].quality).toBe(23);
+            });
+        })
+    })
+
+
+
+
+
+
 });
